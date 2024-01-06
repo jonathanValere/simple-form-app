@@ -26,6 +26,7 @@ export default function Form({
           onChange={onChange}
         />
         <label htmlFor="">Password</label>
+
         <input
           type="password"
           name="password"

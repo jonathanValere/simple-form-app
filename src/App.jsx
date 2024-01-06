@@ -5,6 +5,7 @@ import Form from "./components/Form";
 import StepTwo from "./components/StepTwo";
 
 function App() {
+  // Différents State ---
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
