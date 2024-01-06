@@ -8,7 +8,6 @@ export default function Form({
 }) {
   return (
     <>
-      <h1>Create account</h1>
       <form onSubmit={onSubmit}>
         <label htmlFor="">Name</label>
         <input

@@ -41,8 +41,9 @@ function App() {
   };
 
   return (
-    <>
+    <div className="container">
       <main>
+        <h1>{!isValid ? "Create account" : "Results"}</h1>
         {!isValid ? (
           <Form
             onChange={handleChange}
@@ -62,7 +63,7 @@ function App() {
         )}
       </main>
       <Footer />
-    </>
+    </div>
   );
 }
 
