@@ -54,6 +54,16 @@ form input {
   position: relative;
 }
 
+.isError {
+  border-color: red;
+}
+
+.text-error {
+  color: red;
+  font-size: 0.8rem;
+  margin-bottom: 0.8rem;
+}
+
 button {
   padding: 0.8rem 0.5rem;
   border-radius: var(--border-radius);

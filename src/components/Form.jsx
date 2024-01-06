@@ -5,6 +5,7 @@ export default function Form({
   password,
   passwordConfirm,
   fullName,
+  isError,
 }) {
   return (
     <>
@@ -26,8 +27,8 @@ export default function Form({
           onChange={onChange}
         />
         <label htmlFor="">Password</label>
-
         <input
+          className={isError && "isError"}
           type="password"
           name="password"
           placeholder="Enter your password"
@@ -36,12 +37,16 @@ export default function Form({
         />
         <label htmlFor="">Confirm your password</label>
         <input
+          className={isError && "isError"}
           type="password"
           name="passwordConfirm"
           placeholder="Confirm your password"
           value={passwordConfirm}
           onChange={onChange}
         />
+        {isError && (
+          <p className="text-error">Vos mots de passe ne sont pas identiques</p>
+        )}
         <button>Register</button>
       </form>
     </>

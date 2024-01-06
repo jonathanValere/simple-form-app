@@ -11,6 +11,7 @@ function App() {
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [isValid, setIsValid] = useState(false);
+  const [isError, setIsError] = useState(false);
 
   //Gestion des states ---
   const handleChange = (event) => {
@@ -31,9 +32,16 @@ function App() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
     if (password !== passwordConfirm) {
-      return alert("Vos deux mots de passe ne sont pas identiques.");
+      return setIsError(true);
     }
+
+    if (isError && password === passwordConfirm) {
+      setIsValid(true);
+      return setIsError(false);
+    }
+
     return setIsValid(true);
   };
 
@@ -53,6 +61,7 @@ function App() {
             password={password}
             passwordConfirm={passwordConfirm}
             fullName={fullName}
+            isError={isError}
           />
         ) : (
           <StepTwo
