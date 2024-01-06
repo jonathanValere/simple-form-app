@@ -1,3 +1,5 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 export default function Form({
   onChange,
   onSubmit,
@@ -6,6 +8,10 @@ export default function Form({
   passwordConfirm,
   fullName,
   isError,
+  onClickPassword,
+  isTogglePassword,
+  onClickPasswordConfirm,
+  isTogglePasswordConfirm,
 }) {
   return (
     <>
@@ -27,23 +33,36 @@ export default function Form({
           onChange={onChange}
         />
         <label htmlFor="">Password</label>
-        <input
-          className={isError && "isError"}
-          type="password"
-          name="password"
-          placeholder="Enter your password"
-          value={password}
-          onChange={onChange}
-        />
+        <div className="input-container-pass">
+          <FontAwesomeIcon
+            icon={isTogglePassword ? "eye-slash" : "eye"}
+            onClick={onClickPassword}
+          />
+          <input
+            className={isError && "isError"}
+            type={isTogglePassword ? "text" : "password"}
+            name="password"
+            placeholder="Enter your password"
+            value={password}
+            onChange={onChange}
+          />
+        </div>
         <label htmlFor="">Confirm your password</label>
-        <input
-          className={isError && "isError"}
-          type="password"
-          name="passwordConfirm"
-          placeholder="Confirm your password"
-          value={passwordConfirm}
-          onChange={onChange}
-        />
+        <div className="input-container-pass">
+          <FontAwesomeIcon
+            icon={isTogglePasswordConfirm ? "eye-slash" : "eye"}
+            onClick={onClickPasswordConfirm}
+          />
+
+          <input
+            className={isError && "isError"}
+            type={isTogglePasswordConfirm ? "text" : "password"}
+            name="passwordConfirm"
+            placeholder="Confirm your password"
+            value={passwordConfirm}
+            onChange={onChange}
+          />
+        </div>
         {isError && (
           <p className="text-error">Vos mots de passe ne sont pas identiques</p>
         )}

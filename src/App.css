@@ -54,6 +54,22 @@ form input {
   position: relative;
 }
 
+.input-container-pass {
+  position: relative;
+}
+
+.input-container-pass input {
+  width: 100%;
+}
+
+.input-container-pass svg {
+  position: absolute;
+  z-index: 2;
+  padding: 0.8rem 0;
+  right: 15px;
+  opacity: 0.5;
+}
+
 .isError {
   border-color: red;
 }

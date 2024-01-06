@@ -1,4 +1,13 @@
 import { useState } from "react";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import {
+  faEnvelope,
+  faKey,
+  faListAlt,
+  faEye,
+  faEyeSlash,
+} from "@fortawesome/free-solid-svg-icons";
+library.add(faEnvelope, faKey, faListAlt, faEye, faEyeSlash);
 import "./App.css";
 import Footer from "./components/Footer";
 import Form from "./components/Form";
@@ -11,7 +20,9 @@ function App() {
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [isValid, setIsValid] = useState(false);
-  const [isError, setIsError] = useState(false);
+  const [isError, setIsError] = useState("");
+  const [togglePassword, setTogglePassword] = useState(false);
+  const [togglePasswordConfirm, setTogglePasswordConfirm] = useState(false);
 
   //Gestion des states ---
   const handleChange = (event) => {
@@ -32,21 +43,33 @@ function App() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
+    // gestion de l'erreur de mots de passe pas identiques
     if (password !== passwordConfirm) {
-      return setIsError(true);
+      return setIsError("Wrong");
     }
-
+    // Validation du formulaire
     if (isError && password === passwordConfirm) {
       setIsValid(true);
-      return setIsError(false);
+      return setIsError("");
     }
 
     return setIsValid(true);
   };
 
   const handleEdit = () => {
+    if (togglePassword || togglePasswordConfirm) {
+      setTogglePassword(false);
+      setTogglePasswordConfirm(false);
+    }
     return setIsValid(false);
+  };
+
+  const isTogglePassword = () => {
+    return setTogglePassword(!togglePassword);
+  };
+
+  const isTogglePasswordConfirm = () => {
+    return setTogglePasswordConfirm(!togglePasswordConfirm);
   };
 
   return (
@@ -62,6 +85,10 @@ function App() {
             passwordConfirm={passwordConfirm}
             fullName={fullName}
             isError={isError}
+            onClickPassword={isTogglePassword}
+            isTogglePassword={togglePassword}
+            onClickPasswordConfirm={isTogglePasswordConfirm}
+            isTogglePasswordConfirm={togglePasswordConfirm}
           />
         ) : (
           <StepTwo
