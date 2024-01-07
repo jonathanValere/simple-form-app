@@ -1,69 +1,58 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Input from "./Input";
 
-export default function Form({
-  onChange,
-  onSubmit,
-  email,
-  password,
-  passwordConfirm,
-  fullName,
-  isError,
-  onClickPassword,
-  isTogglePassword,
-  onClickPasswordConfirm,
-  isTogglePasswordConfirm,
-}) {
+export default function Form({ ...props }) {
   return (
     <>
-      <form onSubmit={onSubmit}>
-        <label htmlFor="">Name</label>
-        <input
+      <form onSubmit={props.onSubmit}>
+        <label htmlFor="name">Name</label>
+        <Input
           type="text"
-          name="name"
-          placeholder="Enter your name"
-          value={fullName}
-          onChange={onChange}
+          nameInput="name"
+          placeHolder="Enter your name"
+          value={props.fullName}
+          onChange={props.onChange}
         />
-        <label htmlFor="">Email</label>
-        <input
+        <label htmlFor="email">Email</label>
+        <Input
           type="email"
-          name="email"
-          placeholder="Enter your email"
-          value={email}
-          onChange={onChange}
+          nameInput="email"
+          placeHolder="Enter your email"
+          value={props.email}
+          onChange={props.onChange}
         />
         <label htmlFor="">Password</label>
         <div className="input-container-pass">
           <FontAwesomeIcon
-            icon={isTogglePassword ? "eye-slash" : "eye"}
-            onClick={onClickPassword}
+            icon={props.isTogglePassword ? "eye-slash" : "eye"}
+            onClick={props.onClickPassword}
           />
           <input
-            className={isError && "isError"}
-            type={isTogglePassword ? "text" : "password"}
+            className={props.isError && "isError"}
+            type={props.isTogglePassword ? "text" : "password"}
             name="password"
             placeholder="Enter your password"
-            value={password}
-            onChange={onChange}
+            value={props.password}
+            onChange={props.onChange}
           />
         </div>
         <label htmlFor="">Confirm your password</label>
         <div className="input-container-pass">
           <FontAwesomeIcon
-            icon={isTogglePasswordConfirm ? "eye-slash" : "eye"}
-            onClick={onClickPasswordConfirm}
+            icon={props.isTogglePasswordConfirm ? "eye-slash" : "eye"}
+            onClick={props.onClickPasswordConfirm}
           />
 
           <input
-            className={isError && "isError"}
-            type={isTogglePasswordConfirm ? "text" : "password"}
+            className={props.isError && "isError"}
+            type={props.isTogglePasswordConfirm ? "text" : "password"}
             name="passwordConfirm"
             placeholder="Confirm your password"
-            value={passwordConfirm}
-            onChange={onChange}
+            value={props.passwordConfirm}
+            onChange={props.onChange}
           />
         </div>
-        {isError && (
+        {props.isError && (
           <p className="text-error">Vos mots de passe ne sont pas identiques</p>
         )}
         <button>Register</button>
